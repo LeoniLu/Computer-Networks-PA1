@@ -1,0 +1,91 @@
+		Test-case 1:
+	Output for x:
+./UdpChat -c x 10.170.0.2 3000 8445 
+>>> [Welcome you are registered.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> send y hi,y
+>>> [Message received by y.]
+>>> send z hi,z
+>>> [Message received by z.]
+>>> y: hi,x 
+>>> z: hi,x 
+>>> dereg x
+>>> [You are offline. Bye.]
+>>> reg x
+>>> [Welcome you are registered.]
+>>> [You have messages]
+>>> y:  1:45:41 are you still alive?
+>>> z:  1:45:54 How are you?
+>>> [Client table updated.]
+>>> ^C
+	Output for y:
+./UdpChat -c y 10.170.0.2 3000 3849
+>>> [Welcome you are registered.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> x: hi,y 
+>>> send x hi,x
+>>> [Message received by x.]
+>>> z: hi,y 
+>>> send z hi,z
+>>> [Message received by z.]
+>>> [Client table updated.]
+>>> send x are you still alive?
+>>> [The client is offline, message sent to server.]
+>>> [Messages received by the server and saved]
+>>> [Client table updated.]
+>>> ^C
+	Output for z:
+./UdpChat -c z 10.170.0.2 3000 9473
+>>> [Welcome you are registered.]
+>>> [Client table updated.]
+>>> x: hi,z 
+>>> send x hi,x
+>>> [Message received by x.]
+>>> send y hi,y
+>>> [Message received by y.]
+>>> y: hi,z 
+>>> [Client table updated.]
+>>> send x How are you?
+>>> [The client is offline, message sent to server.]
+>>> [Messages received by the server and saved]
+>>> [Client table updated.]
+>>> ^C
+
+		Test-case 2: only server failed
+	Output for x:
+./UdpChat -c x 10.170.0.2 3000 8445 
+>>> [Welcome you are registered.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> send y hi
+>>> [The client is offline, message sent to server.]
+>>> [[Server not Responding.]
+>>> [Exiting]
+	Output for y:
+./UdpChat -c y 10.170.0.2 3000 3849
+>>> [Welcome you are registered.]
+>>> [Client table updated.]
+>>> dereg y
+>>> [You are offline. Bye.]
+>>> 
+
+		Test-case 2: with both y and server failed
+	Output for x:
+./UdpChat -c x 10.170.0.2 3000 8445 
+>>> [Welcome you are registered.]
+>>> [Client table updated.]
+>>> [Client table updated.]
+>>> send y hi
+>>> [No ACK from y, message sent to server.]
+>>> [[Server not Responding.]
+>>> [Exiting]
+	Output for y:
+./UdpChat -c y 10.170.0.2 3000 3849
+>>> [Welcome you are registered.]
+>>> [Client table updated.]
+>>> ^C
+
