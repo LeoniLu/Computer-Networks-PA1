@@ -1,6 +1,3 @@
--Leoni Lu
--jl5592
-
 Command line instructions: (please be sure every file is in the same directory)
 make clean //clean all unnecessary files in the directory
 make //would compile all programs and make UdpChat executable file
